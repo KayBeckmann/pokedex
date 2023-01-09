@@ -5,8 +5,80 @@ html {
 body {
   margin: 0;
 }
+nav{
+  background-color: rgb(161, 157, 218);
+  position: sticky;
+  display: flex;
+  align-items: center;
+  height: 50px;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+footer{
+  background-color: black;
+  height: 250px;
+  color: white;
+}
+h1, h2{
+  margin: 0;
+}
 /* Klassen */
+.content{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.card{
+  background-color: red;
+  margin: 5px;
+  border: 2px solid #000000;
+  border-radius: 10px;;
+  height: 350px;
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+}
+.card-header{
+  background-color: aqua;
+}
+.card-image{
+  background-color: green;
+}
+.hide-desktop{
+  display: none;
+}
+.loadmore{
+  display: flex;
+  justify-content: center;
+}
+.btn-load {
+	background-color:#0420d6;
+	border-radius:10px;
+	border:1px solid #0420d6;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:17px;
+	padding:16px 31px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #485ef0;
+}
+.btn-load:hover {
+	background-color:#5267f0;
+}
+.btn-load:active {
+	position:relative;
+	top:1px;
+}
 /* ID's */
-/* Mobile View 1000px*/
-@media (max-width: 800px) {
+/* Mobile View*/
+@media (max-width: 960px) {
+  .hide-mobile{
+    display: none;
+  }
+  .hide-desktop{
+  display:flex;
+}
 }
