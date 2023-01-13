@@ -19,10 +19,11 @@ async function loadApi(quantity){
       let pokemon = await fetch(url);
       pokemon = await pokemon.json();
       pokemonExtract(pokemon);
+      renderCards(1); //Karten einzeln rendern
     }
   }
 
-  renderCards(quantity);
+  // renderCards(quantity); //Karten gesammelt rendern
 }
 
 function renderCards(quantity){
@@ -31,12 +32,12 @@ function renderCards(quantity){
 
   for(rendered; rendered<index; rendered++){
     content.innerHTML += /* html */`
-      <div class="card">
+      <div class="card" onclick="openDetail(${rendered})">
         <div class="card-header">
           <h2>${loadedPokemon[rendered].nameEnglish}</h2>
           <h3># ${loadedPokemon[rendered].id}</h3>
         </div>
-        <img src="${loadedPokemon[rendered].image}">
+        <img src="${loadedPokemon[rendered].image}" alt="${loadedPokemon[rendered].nameEnglish}">
       </div>
     `
   }
@@ -70,4 +71,8 @@ function pokemonExtract(pokemon){
     image: pokemon.sprites.front_default
   }
   loadedPokemon.push(newpokemon);
+}
+
+function openDetail(id){
+  alert(id)
 }
