@@ -53,7 +53,7 @@ function pokemonExtract(id, pokemon) {
     types.push(pokemon.types[i].type.name);
   }
 
-  pokemonList[id] = {
+  pokemonList[id] = Object.assign(pokemonList[id], {
     id: pokemon.id,
     height: pokemon.height,
     moves: moves,
@@ -65,7 +65,7 @@ function pokemonExtract(id, pokemon) {
     speed: pokemon.stats[5].base_stat,
     types: types,
     image: pokemon.sprites.front_default
-  };
+  });
 }
 
 function openDetail(id) {
