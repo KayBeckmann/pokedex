@@ -98,16 +98,31 @@ h2 {
   background-color: rgb(143, 138, 97);
 }
 .normal {
-  background-color: rgb(151, 151, 151);
+  background-color: rgb(224, 224, 224);
 }
 .poison {
-  background-color: rgb(117, 51, 117);
+  background-color: rgb(163, 82, 163);
 }
 .electric {
-  background-color: yellow;
+  background: linear-gradient(#f7fa3e, #797102);
 }
 .ground {
   background-color: brown;
+}
+.fairy {
+  background-color: pink;
+}
+.fighting {
+  background: linear-gradient(#b3b2b2, #363636);
+}
+.psychic {
+  background: linear-gradient(#727403, #f5ec75);
+}
+.rock {
+  background-color: darkgrey;
+}
+.ghost {
+  background: linear-gradient(purple, rgb(82, 0, 82));
 }
 
 /* ID's */
