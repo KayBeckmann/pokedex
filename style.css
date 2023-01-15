@@ -86,13 +86,16 @@ h2 {
 
 /*******************************************************************/
 .grass {
-  background-color: greenyellow;
+  background: linear-gradient(rgb(96, 255, 181), rgb(0, 167, 0));
 }
 .water {
-  background-color: rgb(82, 82, 255);
+  background: linear-gradient(rgb(94, 94, 250), rgb(2, 2, 218));
+}
+.ice {
+  background: linear-gradient(rgb(94, 94, 250), rgb(210, 210, 250));
 }
 .fire {
-  background-color: rgb(255, 57, 57);
+  background: linear-gradient(yellow, rgb(248, 10, 10));
 }
 .bug {
   background-color: rgb(143, 138, 97);
@@ -104,7 +107,7 @@ h2 {
   background-color: rgb(163, 82, 163);
 }
 .electric {
-  background: linear-gradient(#f7fa3e, #797102);
+  background: linear-gradient(#f7fa3e, #645e01);
 }
 .ground {
   background-color: brown;
@@ -119,10 +122,20 @@ h2 {
   background: linear-gradient(#727403, #f5ec75);
 }
 .rock {
-  background-color: darkgrey;
+  background: linear-gradient(darkgrey, grey);
 }
 .ghost {
   background: linear-gradient(purple, rgb(82, 0, 82));
+}
+.dragon {
+  background: linear-gradient(rgb(94, 94, 250), rgb(248, 10, 10));
+}
+.dark {
+  background: linear-gradient(rgb(34, 34, 34), rgb(48, 48, 48));
+  color: white;
+}
+.steel {
+  background: linear-gradient(lightgrey, silver);
 }
 
 /* ID's */

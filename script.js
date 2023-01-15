@@ -8,19 +8,24 @@ async function initialisation() {
 }
 
 async function loadApi(quantity) {
-  const index = loaded + quantity;
+  let index = loaded + quantity;
+  let buttons = document.getElementById("buttons");
 
-  if (index < pokemonList.length) {
-    for (loaded; loaded < index; loaded++) {
-      let querryPokemon = pokemonList[loaded].nameEnglish;
-      let url = `https://pokeapi.co/api/v2/pokemon/${querryPokemon}`;
-      let pokemon = await fetch(url);
-      pokemon = await pokemon.json();
-      pokemonExtract(loaded, pokemon);
-      renderCards(1); //Karten einzeln rendern
-    }
+  if (index >= pokemonList.length) {
+    index = pokemonList.length;
+    buttons.classList.add("d-none");
+    alert("Alle Pokemon geladen!");
   }
 
+  for (loaded; loaded < index; loaded++) {
+    let querryPokemon = pokemonList[loaded].nameEnglish;
+    let url = `https://pokeapi.co/api/v2/pokemon/${querryPokemon}`;
+    let pokemon = await fetch(url);
+    pokemon = await pokemon.json();
+    pokemonExtract(loaded, pokemon);
+    renderCards(1); //* Karten einzeln rendern
+  }
+  //! Laden fühlt sich flüssiger an, wenn Karten einzeln gerendert werden.
   // renderCards(quantity); //Karten gesammelt rendern
 }
 
@@ -42,30 +47,40 @@ function renderCards(quantity) {
 }
 
 function pokemonExtract(id, pokemon) {
-  let moves = new Array();
-  let types = new Array();
-
-  for (let i = 0; i < pokemon.moves.length; i++) {
-    moves.push(pokemon.moves[i].move.name);
-  }
-
-  for (let i = 0; i < pokemon.types.length; i++) {
-    types.push(pokemon.types[i].type.name);
-  }
-
+  //Object.assign -> Alten Wert und neuen Wert zusammenführen
   pokemonList[id] = Object.assign(pokemonList[id], {
     id: pokemon.id,
     height: pokemon.height,
-    moves: moves,
+    moves: extractMoves(id, pokemon),
     hp: pokemon.stats[0].base_stat,
     attack: pokemon.stats[1].base_stat,
     defense: pokemon.stats[2].base_stat,
     specialAttack: pokemon.stats[3].base_stat,
     specialDefense: pokemon.stats[4].base_stat,
     speed: pokemon.stats[5].base_stat,
-    types: types,
+    types: extrctTypes(id, pokemon),
     image: pokemon.sprites.front_default
   });
+}
+
+function extractMoves(id, pokemon) {
+  let moves = new Array();
+
+  for (let i = 0; i < pokemon.moves.length; i++) {
+    moves.push(pokemon.moves[i].move.name);
+  }
+
+  return moves;
+}
+
+function extrctTypes(id, pokemon) {
+  let types = new Array();
+
+  for (let i = 0; i < pokemon.types.length; i++) {
+    types.push(pokemon.types[i].type.name);
+  }
+
+  return types;
 }
 
 function openDetail(id) {
