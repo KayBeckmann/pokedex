@@ -1,44 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pokedex</title>
-  <!-- CSS -->
-  <link rel="stylesheet" href="style.css">
-  <!-- JavaScript -->
-  <script src="./script.js"></script>
-  <script src="./pokemon.js"></script>
-</head>
-<body onload="initialisation()">
-  <nav>
-    <div class="hide-mobile">
-      <h1>Mein Pokedex</h1>
-    </div>
-    
-    <div class="hide-desktop">
-      <h1>Mobile Leiste</h1>
-    </div>
-  </nav>
-
-  <div class="content" id="content">
-    <div class="card">
-      <div class="card-header">
-        <h2>Pokemon</h2>
-        <h3># 458</h3>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pokedex</title>
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css" />
+    <!-- JavaScript -->
+    <script src="./script.js"></script>
+    <script src="./pokemon.js"></script>
+  </head>
+  <body onload="initialisation()">
+    <nav>
+      <div class="hide-mobile">
+        <h1>Mein Pokedex</h1>
       </div>
-      <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/4.png" alt="NAME">
-    </div>
-  </div>
 
-  <div class="loadmore">
-    <button class="btn-load" onclick="loadApi(10)">Lade 10</button>
-    <button class="btn-load" onclick="loadApi(50)">Lade 50</button>
-    <button class="btn-load" onclick="loadApi(100)">Lade 100</button>
-  </div>
-  <footer>
-    Some information about
-  </footer>
-</body>
+      <div class="hide-desktop">
+        <h1>Mobile Leiste</h1>
+      </div>
+    </nav>
+
+    <div class="content" id="content">
+      <div class="card">
+        <div class="card-header">
+          <h2>Pokemon</h2>
+          <h3># 458</h3>
+        </div>
+        <img
+          src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/4.png"
+          alt="NAME"
+        />
+      </div>
+    </div>
+
+    <div class="loadmore">
+      <button class="btn-load" onclick="loadApi(10)">Lade 10</button>
+      <button class="btn-load" onclick="loadApi(50)">Lade 50</button>
+      <button class="btn-load" onclick="loadApi(100)">Lade 100</button>
+    </div>
+
+    <div class="dialog d-none" id="dialog">
+      <div class="card" id="detail-card"></div>
+    </div>
+
+    <footer>Some information about</footer>
+  </body>
 </html>

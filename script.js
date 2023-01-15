@@ -1,19 +1,19 @@
 let loaded = 0;
 let rendered = 0;
-let loadedPokemon = new Array;
+let loadedPokemon = new Array();
 
-async function initialisation(){
-  let content = document.getElementById("content")
+async function initialisation() {
+  let content = document.getElementById("content");
   content.innerHTML = ``;
-  loadApi(10);
+  loadApi(9);
   console.log(loadedPokemon);
 }
 
-async function loadApi(quantity){
+async function loadApi(quantity) {
   const index = loaded + quantity;
 
-  if(index < pokemonList.length){
-    for(loaded; loaded<index; loaded++){
+  if (index < pokemonList.length) {
+    for (loaded; loaded < index; loaded++) {
       let querryPokemon = pokemonList[loaded].nameEnglish;
       let url = `https://pokeapi.co/api/v2/pokemon/${querryPokemon}`;
       let pokemon = await fetch(url);
@@ -26,12 +26,12 @@ async function loadApi(quantity){
   // renderCards(quantity); //Karten gesammelt rendern
 }
 
-function renderCards(quantity){
-  let content = document.getElementById("content")
+function renderCards(quantity) {
+  let content = document.getElementById("content");
   const index = rendered + quantity;
 
-  for(rendered; rendered<index; rendered++){
-    content.innerHTML += /* html */`
+  for (rendered; rendered < index; rendered++) {
+    content.innerHTML += /* html */ `
       <div class="card" onclick="openDetail(${rendered})">
         <div class="card-header">
           <h2>${loadedPokemon[rendered].nameEnglish}</h2>
@@ -39,20 +39,20 @@ function renderCards(quantity){
         </div>
         <img src="${loadedPokemon[rendered].image}" alt="${loadedPokemon[rendered].nameEnglish}">
       </div>
-    `
+    `;
   }
 }
 
-function pokemonExtract(pokemon){
-  let moves = new Array;
-  let types = new Array;
+function pokemonExtract(pokemon) {
+  let moves = new Array();
+  let types = new Array();
 
-  for(let i=0; i<pokemon.moves.length;i++){
-    moves.push(pokemon.moves[i].move.name)
+  for (let i = 0; i < pokemon.moves.length; i++) {
+    moves.push(pokemon.moves[i].move.name);
   }
 
-  for(let i=0; i<pokemon.types.length;i++){
-    types.push(pokemon.types[i].type.name)
+  for (let i = 0; i < pokemon.types.length; i++) {
+    types.push(pokemon.types[i].type.name);
   }
 
   let newpokemon = {
@@ -69,10 +69,18 @@ function pokemonExtract(pokemon){
     speed: pokemon.stats[5].base_stat,
     types: types,
     image: pokemon.sprites.front_default
-  }
+  };
   loadedPokemon.push(newpokemon);
 }
 
-function openDetail(id){
-  alert(id)
+function openDetail(id) {
+  let dialog = document.getElementById("dialog");
+  let card = document.getElementById("detail-card");
+
+  dialog.classList.remove("d-none");
+
+  card.innerHTML = /* html */ `
+    <h1>Test</h1>
+    <div>${id}</div>
+  `;
 }
