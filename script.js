@@ -30,12 +30,12 @@ function renderCards(quantity) {
 
   for (rendered; rendered < index; rendered++) {
     content.innerHTML += /* html */ `
-      <div class="card" onclick="openDetail(${rendered})">
+      <div class="card ${pokemonList[rendered].types[0]}" onclick="openDetail(${rendered})">
         <div class="card-header">
           <h2>${pokemonList[rendered].nameGerman}</h2>
-          <h3># ${pokemonList[rendered].id}</h3>
+          <h3># ${pokemonList[rendered].id} ${pokemonList[rendered].types[0]}</h3>
         </div>
-        <img src="${pokemonList[rendered].image}" alt="${pokemonList[rendered].nameEnglish}">
+        <img class="card-image" src="${pokemonList[rendered].image}" alt="${pokemonList[rendered].nameEnglish}">
       </div>
     `;
   }
@@ -76,6 +76,6 @@ function openDetail(id) {
 
   card.innerHTML = /* html */ `
     <h1>Test</h1>
-    <div>${id}</div>
+    <div>${pokemonList[id].types[0]}</div>
   `;
 }
