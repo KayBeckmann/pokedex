@@ -1,12 +1,10 @@
 let loaded = 0;
 let rendered = 0;
-let loadedPokemon = new Array();
 
 async function initialisation() {
   let content = document.getElementById("content");
   content.innerHTML = ``;
   loadApi(9);
-  console.log(loadedPokemon);
 }
 
 async function loadApi(quantity) {
@@ -18,7 +16,7 @@ async function loadApi(quantity) {
       let url = `https://pokeapi.co/api/v2/pokemon/${querryPokemon}`;
       let pokemon = await fetch(url);
       pokemon = await pokemon.json();
-      pokemonExtract(pokemon);
+      pokemonExtract(loaded, pokemon);
       renderCards(1); //Karten einzeln rendern
     }
   }
@@ -34,16 +32,16 @@ function renderCards(quantity) {
     content.innerHTML += /* html */ `
       <div class="card" onclick="openDetail(${rendered})">
         <div class="card-header">
-          <h2>${loadedPokemon[rendered].nameEnglish}</h2>
-          <h3># ${loadedPokemon[rendered].id}</h3>
+          <h2>${pokemonList[rendered].nameGerman}</h2>
+          <h3># ${pokemonList[rendered].id}</h3>
         </div>
-        <img src="${loadedPokemon[rendered].image}" alt="${loadedPokemon[rendered].nameEnglish}">
+        <img src="${pokemonList[rendered].image}" alt="${pokemonList[rendered].nameEnglish}">
       </div>
     `;
   }
 }
 
-function pokemonExtract(pokemon) {
+function pokemonExtract(id, pokemon) {
   let moves = new Array();
   let types = new Array();
 
@@ -55,10 +53,8 @@ function pokemonExtract(pokemon) {
     types.push(pokemon.types[i].type.name);
   }
 
-  let newpokemon = {
+  pokemonList[id] = {
     id: pokemon.id,
-    nameEnglish: pokemon.forms[0].name,
-    nameGerman: ``,
     height: pokemon.height,
     moves: moves,
     hp: pokemon.stats[0].base_stat,
@@ -70,7 +66,6 @@ function pokemonExtract(pokemon) {
     types: types,
     image: pokemon.sprites.front_default
   };
-  loadedPokemon.push(newpokemon);
 }
 
 function openDetail(id) {
