@@ -88,9 +88,22 @@ function openDetail(id) {
   let card = document.getElementById("detail-card");
 
   dialog.classList.remove("d-none");
+  card.classList.add(pokemonList[id].types[0]);
 
   card.innerHTML = /* html */ `
-    <h1>Test</h1>
-    <div>${pokemonList[id].types[0]}</div>
+    <h1>Deutscher Name: ${pokemonList[id].nameGerman}</h1>
+    <h2>Englischer Name: ${pokemonList[id].nameEnglish}</h2>
+    <img src="${pokemonList[id].image}" alt="${pokemonList[id].nameEnglish}">
+    <div>${pokemonList[id].types}</div>
+
+    <button class="btn-load bottom" onclick="closeDetail(${id})">Schließen</button>
   `;
+}
+
+function closeDetail(id) {
+  let dialog = document.getElementById("dialog");
+  let card = document.getElementById("detail-card");
+
+  dialog.classList.add("d-none");
+  card.classList.remove(pokemonList[id].types[0]);
 }
