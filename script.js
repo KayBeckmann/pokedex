@@ -38,7 +38,7 @@ function renderCards(quantity) {
       <div class="card ${pokemonList[rendered].types[0]}" onclick="openDetail(${rendered})">
         <div class="card-header">
           <h2>${pokemonList[rendered].nameGerman}</h2>
-          <h3># ${pokemonList[rendered].id} ${pokemonList[rendered].types[0]}</h3>
+          <h3># ${pokemonList[rendered].id}</h3>
         </div>
         <img class="card-image" src="${pokemonList[rendered].image}" alt="${pokemonList[rendered].nameEnglish}">
       </div>
@@ -93,11 +93,103 @@ function openDetail(id) {
   card.innerHTML = /* html */ `
     <h1>Deutscher Name: ${pokemonList[id].nameGerman}</h1>
     <h2>Englischer Name: ${pokemonList[id].nameEnglish}</h2>
-    <img src="${pokemonList[id].image}" alt="${pokemonList[id].nameEnglish}">
-    <div>${pokemonList[id].types}</div>
+    <img class="detail-img" src="${pokemonList[id].image}" alt="${
+    pokemonList[id].nameEnglish
+  }">
+
+    <div class="detail-menu">${renderDetailMenu(id)}</div>
+    <div class="details-card" id="details-card">DETAILS</div>
 
     <button class="btn-load bottom" onclick="closeDetail(${id})">Schließen</button>
   `;
+  renderBasicData(id);
+}
+
+function renderDetailMenu(id) {
+  let menu = /* html */ `
+  <div class="btn-load" onclick="renderBasicData(${id})">Basis Daten</div>
+  <div class="btn-load" onclick="renderAttack(${id})">Angriffe</div>
+  `;
+
+  return menu;
+}
+
+function renderBasicData(id) {
+  let basicData = document.getElementById("details-card");
+
+  basicData.innerHTML = /* html */ `
+  <div id="types"><h3>Typen: </h3>${renderTypes(id)}</div>
+  <table>
+    <tr>
+      <td><h3>Größe:</h3></td>
+      <td>${pokemonList[id].height}</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><label for="hp"><h3>Lebensenergie:</h3></label></td>
+      <td>${pokemonList[id].hp}</td>
+      <td><progress id="hp" value=${
+        pokemonList[id].hp
+      } max="200"></progress></td>
+    </tr>
+    <tr>
+      <td><label for="attack"><h3>Angriff:</h3></label></td>
+      <td>${pokemonList[id].attack}</td>
+      <td><progress id="attack" value=${
+        pokemonList[id].attack
+      } max="200"></progress></td>
+    </tr>
+    <tr>
+      <td><label for="defense"><h3>Verteidigung:</h3></label></td>
+      <td>${pokemonList[id].defense}</td>
+      <td><progress id="defense" value=${
+        pokemonList[id].defense
+      } max="200"></progress></td>
+    </tr>
+    <tr>
+      <td><label for="special-attack"><h3>Spezialangriff:</h3></label></td>
+      <td>${pokemonList[id].specialAttack}</td>
+      <td><progress id="special-attack" value=${
+        pokemonList[id].specialAttack
+      } max="200"></progress></td>
+    </tr>
+    <tr>
+      <td><label for="special-defense"><h3>Spezialverteidigung:</h3></label></td>
+      <td>${pokemonList[id].specialDefense}</td>
+      <td><progress id="special-defense" value=${
+        pokemonList[id].specialDefense
+      } max="200"></progress></td>
+    </tr>
+    <tr>
+      <td><label for="speed"><h3>Geschwindigkeit</h3></label></td>
+      <td>${pokemonList[id].speed}</td>
+      <td><progress id="speed" value=${
+        pokemonList[id].speed
+      } max="200"></progress></td>
+    </tr>
+  </table>
+  `;
+}
+
+function renderTypes(id) {
+  let types = "";
+
+  for (let i = 0; i < pokemonList[id].types.length; i++) {
+    types += pokemonList[id].types[i];
+    types += ` `;
+  }
+  return types;
+}
+
+function renderAttack(id) {
+  let attack = document.getElementById("details-card");
+  attack.innerHTML = ``;
+
+  for (let i = 0; i < pokemonList[id].moves.length; i++) {
+    attack.innerHTML += /* html */ `
+    ${pokemonList[id].moves[i]}, 
+    `;
+  }
 }
 
 function closeDetail(id) {

@@ -21,8 +21,27 @@ footer {
   color: white;
 }
 h1,
-h2 {
+h2,
+h3 {
   margin: 0;
+}
+h3 {
+  margin-right: 5px;
+}
+table {
+  height: 100%;
+  text-align: left;
+  border-collapse: collapse;
+}
+table td,
+table.table th {
+  padding: 0 20px;
+}
+table tr:nth-child(even) {
+  background: #d0e4f5;
+}
+table tr:nth-child(odd) {
+  background: #82a2be;
 }
 /* Klassen */
 .content {
@@ -96,18 +115,58 @@ h2 {
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: relative;
+}
+.detail-img {
+  height: 300px;
+}
+.detail-menu {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+.details-card {
+  /* background-color: white; */
+  width: 80%;
+  height: 35%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  overflow: auto;
 }
 .bottom {
-  position: inherit;
+  position: absolute;
   bottom: 0;
 }
+/*******************************************************************/
+/* ===== Scrollbar CSS ===== */
+/* Firefox */
+* {
+  scrollbar-width: auto;
+  scrollbar-color: #0420d6 #ffffff00;
+}
 
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 10px;
+}
+
+*::-webkit-scrollbar-track {
+  background: #ffffff00;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #0420d6;
+  border-radius: 10px;
+}
 /*******************************************************************/
 .grass {
   background: linear-gradient(rgb(96, 255, 181), rgb(0, 167, 0));
 }
 .water {
   background: linear-gradient(rgb(94, 94, 250), rgb(2, 2, 218));
+  color: white;
 }
 .ice {
   background: linear-gradient(rgb(94, 94, 250), rgb(210, 210, 250));
@@ -157,6 +216,11 @@ h2 {
 }
 
 /* ID's */
+#types {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
 /* Mobile View*/
 @media (max-width: 960px) {
   .hide-mobile {
