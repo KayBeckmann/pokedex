@@ -4,6 +4,9 @@ let rendered = 0;
 async function initialisation() {
   let content = document.getElementById("content");
   content.innerHTML = ``;
+  loaded = 0;
+  rendered = 0;
+  document.getElementById("searchinput").value = "";
   loadApi(9);
 }
 
@@ -23,27 +26,22 @@ async function loadApi(quantity) {
     let pokemon = await fetch(url);
     pokemon = await pokemon.json();
     pokemonExtract(loaded, pokemon);
-    renderCards(1); //* Karten einzeln rendern
+    renderCards(loaded); //* Karten einzeln rendern
   }
-  //! Laden fühlt sich flüssiger an, wenn Karten einzeln gerendert werden.
-  // renderCards(quantity); //Karten gesammelt rendern
 }
 
-function renderCards(quantity) {
+function renderCards(id) {
   let content = document.getElementById("content");
-  const index = rendered + quantity;
 
-  for (rendered; rendered < index; rendered++) {
-    content.innerHTML += /* html */ `
-      <div class="card ${pokemonList[rendered].types[0]}" onclick="openDetail(${rendered})">
+  content.innerHTML += /* html */ `
+      <div class="card ${pokemonList[id].types[0]}" onclick="openDetail(${id})">
         <div class="card-header">
-          <h2>${pokemonList[rendered].nameGerman}</h2>
-          <h3># ${pokemonList[rendered].id}</h3>
+          <h2>${pokemonList[id].nameGerman}</h2>
+          <h3># ${pokemonList[id].id}</h3>
         </div>
-        <img class="card-image" src="${pokemonList[rendered].image}" alt="${pokemonList[rendered].nameEnglish}">
+        <img class="card-image" src="${pokemonList[id].image}" alt="${pokemonList[id].nameEnglish}">
       </div>
     `;
-  }
 }
 
 function pokemonExtract(id, pokemon) {
