@@ -6,6 +6,7 @@ async function initialisation() {
   content.innerHTML = ``;
   loaded = 0;
   rendered = 0;
+  renderButton(0);
   document.getElementById("searchinput").value = "";
   loadApi(9);
 }
@@ -196,4 +197,21 @@ function closeDetail(id) {
 
   dialog.classList.add("d-none");
   card.classList.remove(pokemonList[id].types[0]);
+}
+
+function renderButton(id) {
+  let button = document.getElementById("search-button");
+
+  if (id == 0) {
+    button.innerHTML = /* html */ `
+    <button class="btn-load" id="search-button" onclick="searchName()">
+          Suchen
+        </button>`;
+  } else {
+    button.innerHTML = /* html */ `
+      <button class="btn-load" id="search-button" onclick="initialisation()">
+        Reset
+      </button>
+      `;
+  }
 }

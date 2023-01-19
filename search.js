@@ -21,6 +21,7 @@ function renderList(search = "") {
 function searchName() {
   let input = document.getElementById("searchinput").value;
   input = input.toLowerCase();
+  renderButton(1);
   renderList(input);
 }
 

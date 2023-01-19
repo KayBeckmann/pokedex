@@ -21,8 +21,14 @@ nav {
 }
 footer {
   background-color: black;
-  height: 250px;
+  height: 150px;
   color: white;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding-left: 35px;
+  padding-right: 35px;
 }
 h1,
 h2,
@@ -31,6 +37,11 @@ h3 {
 }
 h3 {
   margin-right: 5px;
+}
+a {
+  text-decoration: none;
+  color: white;
+  margin: 15px;
 }
 table {
   height: 100%;
@@ -63,6 +74,22 @@ input:focus {
   outline: none;
 }
 /* Klassen */
+.nav-right {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.footer-left {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.footer-right {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
 .content {
   display: flex;
   flex-wrap: wrap;
@@ -148,7 +175,7 @@ input:focus {
 .details-card {
   /* background-color: white; */
   width: 80%;
-  height: 35%;
+  height: 40%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -242,7 +269,7 @@ input:focus {
   align-items: center;
 }
 /* Mobile View*/
-@media (max-width: 960px) {
+@media (max-width: 750px) {
   input {
     height: 80%;
     width: 70%;
@@ -253,9 +280,12 @@ input:focus {
   .hide-desktop {
     display: flex;
   }
-  .nav-right {
+  .detail-card {
+    height: 100vh;
+    width: 100vw;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
+    position: relative;
   }
 }
